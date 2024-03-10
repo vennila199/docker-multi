@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t vennila/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t vennilasanthanam/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true vennila/react-test npm test
+  - docker run -e CI=true vennilasanthanam/react-test npm test
 
 after_success:
-  - docker build -t vennila/multi-client ./client
-  - docker build -t vennila/multi-nginx ./nginx
-  - docker build -t vennila/multi-server ./server
-  - docker build -t vennila/multi-worker ./worker
+  - docker build -t vennilasanthanam/multi-client ./client
+  - docker build -t vennilasanthanam/multi-nginx ./nginx
+  - docker build -t vennilasanthanam/multi-server ./server
+  - docker build -t vennilasanthanam/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push vennila/multi-client
-  - docker push vennila/multi-nginx
-  - docker push vennila/multi-server
-  - docker push vennila/multi-worker
+  - docker push vennilasanthanam/multi-client
+  - docker push vennilasanthanam/multi-nginx
+  - docker push vennilasanthanam/multi-server
+  - docker push vennilasanthanam/multi-worker
